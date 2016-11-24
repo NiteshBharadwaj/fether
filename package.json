@@ -13,7 +13,10 @@
       "ShowContents": "graphs/ShowContents.fbp"
     },
     "components": {
-      "Forwarder": "components/Forwarder.js"
+	  "connecttogeth": "components/connecttogeth.js",
+	  "maketransaction": "components/maketransaction.js",
+	  "committransaction": "components/committransaction.js",
+	  "alert": "components/alert.js"
     }
   }
 }

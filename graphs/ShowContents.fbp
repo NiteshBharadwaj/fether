@@ -1,7 +1,14 @@
 # In the graph we first need to define the nodes and the connections between them
-Read(filesystem/ReadFile) OUT -> IN Forwarder1(Forwarder)
-Forwarder1(Forwarder) OUT -> IN Forwarder2(Forwarder)
-Forwarder2(Forwarder) OUT -> IN Display(core/Output)
+Read(filesystem/ReadFile) OUT -> IN InitiateConnection(connecttogeth)
+InitiateConnection(connecttogeth) CONNECTION -> CONNECTION MakeTransaction(maketransaction)
+InitiateConnection(connecttogeth) DISPLAYOUT -> DATA Display1(alert)
+MakeTransaction(maketransaction) TRANSACTION -> IN CommitTransaction(committransaction)
+MakeTransaction(maketransaction) DISPLAYOUT -> DATA Display2(alert)
+CommitTransaction(committransaction) OUT -> DATA Display3(alert)
+Display1(alert) DONE -> START Display2(alert)
+Display2(alert) DONE -> START Display3(alert)
+0.01 -> AMOUNT MakeTransaction(maketransaction)
+1 -> START Display1(alert)
 
 # Start off the graph by sending a filename to the file reader
 'package.json' -> IN Read
